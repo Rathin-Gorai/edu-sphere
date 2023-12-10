@@ -1,7 +1,10 @@
 'use client'
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 const Page = () => {
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -13,18 +16,29 @@ const Page = () => {
   };
 
   const validateLogin = () => {
-    // Add your validation logic here
-
-    if (formData.username === 'yourUsername' && formData.password === 'yourPassword') {
-      alert('Login successful!');
+    // Add your validation logic 
+    if (formData.username === 'rathin' && formData.password === '123') {
+      switch(formData.role){
+        case 'student':
+          router.push('/student');
+        break;
+        case 'teacher':
+          router.push('/teacher');
+        break;
+        case 'admin':
+          router.push('/admin')
+        default :
+        console.log("Default");
+      }
+      
     } else {
       alert('Invalid credentials. Please try again.');
     }
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="bg-white p-8 rounded shadow-md w-96">
+    <div className="flex items-center justify-center h-screen ">
+      <div className="bg-white p-8 rounded shadow-md w-96 shadow-[2px_-8px_14px_3px_#D32C39CA]">
         <form className="space-y-4">
           <div>
             <label htmlFor="username" className="block text-sm font-medium text-gray-600">
